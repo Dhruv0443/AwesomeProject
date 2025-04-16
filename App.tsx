@@ -1,49 +1,32 @@
-import React from "react";
-import { View,Text, StyleSheet, StatusBar, Button, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback} from "react-native";
-function App(){
-  const alertFunc =()=>{
-    console.log("Button Preseed");
-  };
+import { View, Text, TextInput, StyleSheet } from 'react-native'
+import React from 'react'
+
+const App = () => {
   return (
-    <View style={{flex:1,justifyContent:'center',alignItems:'center',gap:20}}>
-      <TouchableHighlight underlayColor={'blue'} 
-      onPress={alertFunc}>
-        {/* gives a underlay color when button is pressed */}
-        <View style={styles.btnColor}>
-          <Text>Press Me</Text>
-        </View>
-      </TouchableHighlight>
-      <TouchableOpacity>
-        {/* gives opacity to it when clicked --- initally white color*/}
-        <View style={styles.btnColor}>
-          <Text>Press Me</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableNativeFeedback> 
-        {/* gives rippling feedback */}
-        <View style={styles.btnColor}>
-          <Text>Press Me</Text>
-        </View>
-      </TouchableNativeFeedback>
-      <TouchableWithoutFeedback>
-        {/* for giving the simple button with no effect */}
-        <View style={styles.btnColor}>
-          <Text>Press Me</Text>
-        </View>
-      </TouchableWithoutFeedback>
+    <View>
+      <TextInput 
+        style={styles.TextInput} 
+        onChangeText={text=>console.log(text)}
+        placeholder="Enter your name"
+        autoCapitalize='sentences'
+        defaultValue='dhruv' //can be change
+        value='dev' // this will not change 
+        maxLength={10}// to give size to input
+        multiline={true} // to give multiple lines
+        numberOfLines={4} // to give number of line when multiple lines are called ...it cant work alone
+        keyboardType='numeric' // to give the different type of keyboard u want
+      />
     </View>
-  );
+  )
 }
+
 export default App;
 const styles = StyleSheet.create({
-  btnColor:{
-    backgroundColor:'red',
-    width:200,
-    height:50,
-    justifyContent:'center',
-    alignItems:'center',
+  TextInput:{
+    margin:50,
+    borderWidth:1,
+    borderColor:'red',
+    borderRadius:10,
+    paddingHorizontal:10,
   },
-  appheight:{
-    marginTop: StatusBar.currentHeight,
-  }
 });
