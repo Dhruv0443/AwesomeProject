@@ -1,21 +1,21 @@
 import { Alert, Button, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import Loading from './Loading';
 const UseEffectComp = () => {
+  const [products, setProducts] =useState([]);
     useEffect(()=>{
-      console.log('Hello form effect');
-    // const clearId =setInterval(()=>{
-    //   console.log('Advertisement');
-    // },5000)
-    // return ()=>{
-    //   console.log('component unmounted');
-    //   clearInterval(clearId);
-    // }
-    },[count]);
-    console.log('hello');
+      async function callingApi(){
+        const fetchData = await fetch('https://dummyjson.com/products');
+        const data = await fetchData.json();
+        setProducts(data.products);
+        console.log(data);
+      }
+      callingApi();
+    },[]);
+
   return (
-    <View>
-      <Text>{count}</Text>
-      <Button title='Increase' onPress={()=>setCount(count+1)}/>
+    <View style={{width:'100%', height:'100%'}}>
+    {products.length===0 ? <Loading/>: <Text>Hello</Text>}
     </View>
   )
 }
